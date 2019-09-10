@@ -12,3 +12,9 @@ pipeline {
 		}
 	}
 }
+
+withAWS(region:'eu-west-3', credentials:aws-static) {
+	s3Upload(file:'index.html', bucket:'jpbjenkins', path:'index.html')
+}
+
+
