@@ -11,7 +11,6 @@ pipeline {
 
 
 
-	stages {
 		stage('Upload to AWS') {
 			steps {
 				sh 'echo "Hello World"'
@@ -25,7 +24,6 @@ pipeline {
 				}		
 			}
 		}
-	}
 }
 
 
