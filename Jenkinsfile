@@ -29,9 +29,11 @@ pipeline {
                                 You can check it in the "Credential" menu on Jenkins web interface
                         */
                         steps {
+                                script {
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
                                 app.push("${env.BUILD_NUMBER}")
                                 app.push("lastest")
+                                }
                         }
                         }
                 }
