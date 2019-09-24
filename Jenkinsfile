@@ -1,6 +1,9 @@
 pipeline {
-  
-        def app
+        
+        environment {
+            registry = "22noname/nginx"
+            registryCredential = ‘Docker-Hub’
+        }
 
         agent any
 
@@ -12,11 +15,12 @@ pipeline {
                 }
 
                 stage('Check Nginx Docker Image Building') {
-                       /* steps {
-                                sh 'docker build --network=host . -t 22noname/nginx'
+                       steps {  
+                               /* sh 'docker build --network=host . -t 22noname/nginx' */
+                                script {
+                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                }
                         }
-                       */
-                        app = docker.build("22noname/nginx")
                 }
 
                 stage('Check if Nginx is Running') {
@@ -35,11 +39,10 @@ pipeline {
                         */
                         steps { 
                                 script {
-                        docker.withRegistry('https://registry.hub.docker.com', 'Docker-Hub') {
-                                app.push("${env.BUILD_NUMBER}")
-                                app.push("lastest")
+                                        docker.withRegistry('https://registry.hub.docker.com', registry) {
+                                                DockerImage.push()
+                                        }
                                 }
-                        }
                         }
                 }
 
