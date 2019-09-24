@@ -8,11 +8,10 @@ pipeline {
                         }
                 }
 
-                stage('Check if Nginx is Running') {
-                        agent {
-                            docker { image '22noname/nginx' }
-                        }
-                        steps { 
+                stage('Build Docker Image') {
+                        agent { dockerfile true }
+                        }                
+                        steps {
                                 sh 'nginx -V'
                         }
                 }
@@ -20,6 +19,7 @@ pipeline {
         }
 
 }
+
 
 
 
