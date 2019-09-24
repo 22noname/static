@@ -2,13 +2,13 @@ pipeline {
         agent any
 
         stages {
-                stage('Lint HTML') {
+                stage('Check Index.html file using Tidy linter') {
                         steps { 
                                 sh 'tidy -q -e *.html'
                         }
                 }
 
-                stage('Test Nginx') {
+                stage('Check if Nginx is Running') {
                         agent {
                             docker { image '22noname/nginx' }
                         }
@@ -20,6 +20,7 @@ pipeline {
         }
 
 }
+
 
 
 
