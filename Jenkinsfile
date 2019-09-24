@@ -12,9 +12,10 @@ pipeline {
                 }
 
                 stage('Check Nginx Docker Image Building') {
-                       # steps {
-                       #         sh 'docker build --network=host . -t 22noname/nginx'
-                       # }
+                       /* steps {
+                                sh 'docker build --network=host . -t 22noname/nginx'
+                        }
+                       */
                         app = docker.build("22noname/nginx")
                 }
 
