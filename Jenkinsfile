@@ -2,7 +2,7 @@ pipeline {
         
         environment {
             registry = "22noname/nginx"
-            registryCredential = ‘Docker-Hub’
+            registryCredential = "Docker-Hub"
         }
 
         agent any
