@@ -7,26 +7,20 @@ pipeline {
                                 sh 'tidy -q -e *.html'
                         }
                 }
-
-                stage('Build Docker Image') {
-                        agent { dockerfile true }
-                        }
+                 
+         agent { dockerfile true }
+                stages {  
+                        stage ('Nginx Docker build Test") {
                         steps { 
                                 sh 'nginx -V'
                         }
-
-
-                stage('Check if Nginx is Running') {
-                        agent {
-                            docker { image '22noname/nginx' }
-                        }
-                        steps { 
-                                sh 'nginx -V'
-                        }
+                }        
                 }
+
 
         }
 
 }
+
 
 
