@@ -40,7 +40,7 @@ pipeline {
                         steps { 
                                 script {
                                         docker.withRegistry('https://registry.hub.docker.com', registryCredential) {
-                                                DockerImage.push()
+                                                dockerImage.push()
                                         }
                                 }
                         }
