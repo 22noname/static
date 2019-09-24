@@ -16,6 +16,7 @@ RUN \
   apt-get install -y --no-install-recommends nginx && \
   apt-get install -y wget && \
   apt-get install -y git && \
+  apt-get install -y lynx && \
   rm -rf /var/lib/apt/lists/* && \
   printf "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   chown -R www-data:www-data /var/lib/nginx && \
