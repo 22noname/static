@@ -9,8 +9,11 @@ pipeline {
                 }
 
                 stage('Test the Dockerfile') {
+                        agent {
+                            docker { image 'hadolint:hadolint' }
+                        }
                         steps { 
-                                sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
+                                sh 'hadolint < Dockerfile'
                         }
                 }
 
