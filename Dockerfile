@@ -17,6 +17,7 @@ RUN \
   apt-get install -y wget && \
   apt-get install -y git && \
   apt-get install -y lynx && \
+  apt-get install -y dnsutils && \
   rm -rf /var/lib/apt/lists/* && \
   printf "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   chown -R www-data:www-data /var/lib/nginx && \
