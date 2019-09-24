@@ -1,4 +1,7 @@
 pipeline {
+  
+        def app
+
         agent any
 
         stages {
@@ -9,9 +12,10 @@ pipeline {
                 }
 
                 stage('Check Nginx Docker Image Building') {
-                        steps { 
-                                sh 'docker build --network=host . -t 22noname/nginx'
-                        }
+                       # steps {
+                       #         sh 'docker build --network=host . -t 22noname/nginx'
+                       # }
+                        app = docker.build("22noname/nginx")
                 }
 
                 stage('Check if Nginx is Running') {
@@ -28,11 +32,11 @@ pipeline {
                                 In my case, the Docker Host URI is 'docker-hub'
                                 You can check it in the "Credential" menu on Jenkins web interface
                         */
-                        steps {
+                        steps { 
                                 script {
                         docker.withRegistry('https://registry.hub.docker.com', 'Docker-Hub') {
-                                push("${env.BUILD_NUMBER}")
-                                push("lastest")
+                                app.push("${env.BUILD_NUMBER}")
+                                app.push("lastest")
                                 }
                         }
                         }
