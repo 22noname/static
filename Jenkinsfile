@@ -23,6 +23,17 @@ pipeline {
                         }
                 }
 
+                stage('Push Nginx Image on DockerHub') {
+                        /* You need to create a "Docker Build and Publish" Building step on Jenkins
+                                In my case, the Docker Host URI is 'docker-hub'
+                                You can check it in the "Credential" menu on Jenkins web interface
+                        */      
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+                                app.push("${env.BUILD_NUMBER}")
+                                app.push("lastest")
+                        }
+                }
+
         }
 
 }
