@@ -18,7 +18,7 @@ pipeline {
                        steps {  
                                /* sh 'docker build --network=host . -t 22noname/nginx' */
                                 script {
-                                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                        dockerImage = docker.build registry + ":latest"
                                 }
                         }
                 }
